@@ -1,26 +1,86 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f5f9f6;
+  --foreground: #16232b;
 }
 
 @theme inline {
-  --color-background: var(--background);
+  --color-surface: #f5f9f6;
+  --color-surface-2: #ffffff;
+  --color-line: #e1ebe4;
+  --color-ink: #16232b;
+  --color-brand: #1f9d63;
+  --color-brand-soft: #d9f2e4;
+  --color-coral: #ff6b5e;
+  --color-coral-soft: #ffe2de;
+  --color-sky: #2f8fe0;
+  --color-sky-soft: #dcebfc;
+  --color-gold: #f2a93b;
+  --color-gold-soft: #fdecd1;
+  --color-twitch: #9146ff;
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-baloo);
+  --font-body: var(--font-inter);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), sans-serif;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-brand) 25%, transparent);
+}
+
+/* --- Decorative background: soft map-ish blobs, no grid/scanlines --- */
+
+.blob {
+  border-radius: 9999px;
+  filter: blur(80px);
+  animation: float 14s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(0, -24px, 0) scale(1.06); }
+}
+
+/* --- Shared UI feel --- */
+
+.panel {
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-line);
+  box-shadow: 0 1px 2px rgba(22, 35, 43, 0.04);
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.45); }
+  50% { opacity: 0.75; box-shadow: 0 0 0 6px rgba(255, 71, 87, 0); }
+}
+
+.live-dot {
+  animation: pulse-dot 1.6s ease-in-out infinite;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--color-brand) 35%, transparent);
+  border-radius: 9999px;
 }

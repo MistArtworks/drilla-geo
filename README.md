@@ -66,4 +66,3 @@ Open [http://localhost:3000](http://localhost:3000).
    bracket (odd counts get a random bye).
 4. As matches finish, click the winning team in each matchup on the admin
    dashboard to advance them. The public `/bracket` page updates to match.
-# drilla-geo
